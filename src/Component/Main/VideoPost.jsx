@@ -32,7 +32,7 @@ function VideoPost() {
       reader.readAsDataURL(file);
 
       // Upload video to Firebase Storage
-      const storageRef = sRef(storage, `PostingVideos/${file.name}`);
+      const storageRef = sRef(storage, `VideoPosting/${file.name}`);
 
       uploadBytes(storageRef, file)
         .then((snapshot) => {
@@ -490,15 +490,20 @@ function VideoPost() {
                     <div class="section-title">
                       Video Upload: <span className="Validation">*</span>
                     </div>
-                    <div class="custom-text">
+                    <div class="custom-file">
                       <input
-                        className="custom-text-input"
-                        id="text"
-                        placeholder="Link Video Url"
+                        type="file"
+                        className="custom-file-input"
+                        id="customFile"
+                        accept=".mp4, .mkv, .avi"
                         onChange={(e) => handleFileChange(e)}
                       />
-                      <label >
-                       
+                      <label htmlFor="customFile" className="custom-file-label">
+                        {selectedFile
+                          ? selectedFile.name.length > 20
+                            ? `${selectedFile.name.substring(0, 20)}...`
+                            : selectedFile.name
+                          : "Choose File"}
                       </label>
                     </div>
                   </div>

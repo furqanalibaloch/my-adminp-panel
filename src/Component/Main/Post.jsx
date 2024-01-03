@@ -71,8 +71,8 @@ function Post() {
   const [hdnID, sethdnID] = useState("");
   const handleSave = async () => {
     try {
-      const currentDate = new Date(); // Get the current date and time
-      const formattedDate = currentDate.toLocaleDateString(); // Get only the date portion
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString(); 
       const currentTime = currentDate.toLocaleTimeString();
 
       if (hdnID !== "" && hdnID !== null) {
@@ -89,6 +89,7 @@ function Post() {
               uploadTime: currentTime,
             };
             await update(PostingRef, newPosting);
+            
           } else {
             const PostingRef = ref(db, `Posting/${hdnID}`);
             const newPosting = {
@@ -101,7 +102,7 @@ function Post() {
             await update(PostingRef, newPosting);
           }
 
-          // Show the success alert
+          
           setShowSuccessAlert(true);
 
           setTimeout(() => {
